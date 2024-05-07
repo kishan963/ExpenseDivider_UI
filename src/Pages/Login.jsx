@@ -53,7 +53,6 @@ function Login() {
     // ✅ This will be type-safe and validated.
     
     ApiCalls.LoginHandler(values)
-    ApiCalls.GetUserGroupsHandler()
   }
 
   return (

@@ -5,6 +5,7 @@ import Home from "./Pages/Home"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import CheckToken from "./Pages/Loading"
 import GroupHandler from "./Pages/Group"
+import ExpenseHandler from "./Pages/Expense"
 function App() {
 
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
         <Route path="/group/:id" element={<GroupHandler/>} />
+        <Route path="/expense/:id" element={<ExpenseHandler/>} />
       </Routes>
     </Router>
      

@@ -1,6 +1,4 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
 
 
 const LoginHandler = (props)=>{
@@ -29,24 +27,14 @@ const SignUpHandler = (props)=>{
   
 }
 
-const GetAllUserHandler = ()=>{
-  const navigate= useNavigate();
+const GetAllUserHandler = async ()=>{
   const token = localStorage.getItem('token_splitwise');
   // Set up headers with the token
   const headers = {
-    token: JSON.parse(token)
+    token: token
   };
-   
-  axios.get(`http://localhost:8080/getAllUser`,{headers})
-  .then(res => {
-    console.log(res);
-    console.log(res.data);
-  }) .catch(error => {
-    console.log(error)
-    localStorage.removeItem('token_splitwise');
-    navigate("/login");
-  });
-  
+  const response = await axios.get(`http://localhost:8080/getAllUser`,{headers})
+  return response.data
 }
 
 const GetUserGroupsHandler = async ()=>{
@@ -77,4 +65,18 @@ const GetGroupHandler = async (id)=>{
   return response.data
 }
 
-export default {LoginHandler , SignUpHandler, GetAllUserHandler, GetUserGroupsHandler, GetGroupHandler};
+const AddExpenseHandler = async (data)=>{
+  const token = localStorage.getItem('token_splitwise');
+  // Set up headers with the token
+  console.log(token)
+  const headers = {
+    token: token
+  };
+  const response = await axios.post(`http://localhost:8080/addExpense`,data,{headers})
+  return response.data
+}
+
+
+
+
+export default {LoginHandler , SignUpHandler, GetAllUserHandler, GetUserGroupsHandler, GetGroupHandler, AddExpenseHandler};
