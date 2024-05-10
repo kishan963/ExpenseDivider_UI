@@ -21,6 +21,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import ApiCalls from "@/Api/ApiCalls"
+import { useNavigate } from "react-router-dom"
 
 
 // schema for login form 
@@ -35,6 +36,7 @@ const loginFormSchema = z.object({
 
 
 function Login() {
+  const navigate = useNavigate();
   // 1. Define your loginForm.
   const loginForm = useForm({
     resolver: zodResolver(loginFormSchema),
@@ -51,8 +53,18 @@ function Login() {
   function onSubmit(values) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
+    NavigateToHome(values)
     
-    ApiCalls.LoginHandler(values)
+  }
+
+  async function NavigateToHome(values) {
+    try {
+      await ApiCalls.LoginHandler(values); // Wait for the API call to finish
+      navigate(`/home`); // Navigate after the API call is finished
+    } catch (error) {
+      console.error('Error adding expense:', error);
+      // Handle error if needed
+    }
   }
 
   return (

@@ -3,6 +3,9 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import NavigationIcon from '@mui/icons-material/Navigation';
 
 
 
@@ -39,7 +42,20 @@ const Home = () => {
                         </>
                     ))}
                 </div>
+                <div>
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Fab variant="extended" color="primary">
+                    <NavigationIcon sx={{ mr: 1 }} />
+                    <Link to={`../createGroup`}>
+                        Create Group
+                    </Link>
+
+                </Fab>
+            </Box>
+                </div>
             </ScrollArea>
+           
+            
         </div>
     )
 }

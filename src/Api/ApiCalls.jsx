@@ -34,7 +34,7 @@ const GetAllUserHandler = async ()=>{
     token: token
   };
   const response = await axios.get(`http://localhost:8080/getAllUser`,{headers})
-  return response.data
+  return response.data==null ? [] : response.data
 }
 
 const GetUserGroupsHandler = async ()=>{
@@ -49,8 +49,8 @@ const GetUserGroupsHandler = async ()=>{
   console.log(id)
   
   const response = await axios.post(`http://localhost:8080/getUserGroups`,{Id: JSON.parse(id) },{headers})
-  
-  return response.data
+ 
+  return response.data==null ? [] : response.data
 }
 
 
@@ -62,7 +62,7 @@ const GetGroupHandler = async (id)=>{
     token: token
   };
   const response = await axios.post(`http://localhost:8080/getGroup`,{Id: JSON.parse(id)},{headers})
-  return response.data
+  return response.data==null ? [] : response.data
 }
 
 const AddExpenseHandler = async (data)=>{
@@ -73,10 +73,21 @@ const AddExpenseHandler = async (data)=>{
     token: token
   };
   const response = await axios.post(`http://localhost:8080/addExpense`,data,{headers})
-  return response.data
+  return response.data==null ? [] : response.data
+}
+
+const CreateGroupHandler = async (data)=>{
+  const token = localStorage.getItem('token_splitwise');
+  // Set up headers with the token
+  console.log(token)
+  const headers = {
+    token: token
+  };
+  const response = await axios.post(`http://localhost:8080/createGroup`,data,{headers})
+  return response.data==null ? [] : response.data
 }
 
 
 
 
-export default {LoginHandler , SignUpHandler, GetAllUserHandler, GetUserGroupsHandler, GetGroupHandler, AddExpenseHandler};
+export default {LoginHandler , SignUpHandler, GetAllUserHandler, GetUserGroupsHandler,CreateGroupHandler, GetGroupHandler, AddExpenseHandler};
