@@ -4,7 +4,7 @@ import axios from "axios";
 const LoginHandler = (props)=>{
     const { Email, Phone } = props;
     console.log(Email , Phone)
-    axios.post(`http://localhost:8080/login`,{ Email, Phone })
+    axios.post(`https://expensedivider.onrender.com/login`,{ Email, Phone })
     .then(res => {
       console.log(res);
       console.log(res.data.token);
@@ -19,7 +19,7 @@ const LoginHandler = (props)=>{
 const SignUpHandler = (props)=>{
   const {Username,  Email, Phone } = props;
   console.log(Username ,Email , Phone)
-  axios.post(`http://localhost:8080/register`,{Username, Email, Phone })
+  axios.post(`https://expensedivider.onrender.com/register`,{Username, Email, Phone })
   .then(res => {
     console.log(res);
     console.log(res.data);
@@ -33,7 +33,7 @@ const GetAllUserHandler = async ()=>{
   const headers = {
     token: token
   };
-  const response = await axios.get(`http://localhost:8080/getAllUser`,{headers})
+  const response = await axios.get(`https://expensedivider.onrender.com/getAllUser`,{headers})
   return response.data==null ? [] : response.data
 }
 
@@ -48,7 +48,7 @@ const GetUserGroupsHandler = async ()=>{
  
   console.log(id)
   
-  const response = await axios.post(`http://localhost:8080/getUserGroups`,{Id: JSON.parse(id) },{headers})
+  const response = await axios.post(`https://expensedivider.onrender.com/getUserGroups`,{Id: JSON.parse(id) },{headers})
  
   return response.data==null ? [] : response.data
 }
@@ -61,7 +61,7 @@ const GetGroupHandler = async (id)=>{
   const headers = {
     token: token
   };
-  const response = await axios.post(`http://localhost:8080/getGroup`,{Id: JSON.parse(id)},{headers})
+  const response = await axios.post(`https://expensedivider.onrender.com/getGroup`,{Id: JSON.parse(id)},{headers})
   return response.data==null ? [] : response.data
 }
 
@@ -72,7 +72,7 @@ const AddExpenseHandler = async (data)=>{
   const headers = {
     token: token
   };
-  const response = await axios.post(`http://localhost:8080/addExpense`,data,{headers})
+  const response = await axios.post(`https://expensedivider.onrender.com/addExpense`,data,{headers})
   return response.data==null ? [] : response.data
 }
 
@@ -83,7 +83,7 @@ const CreateGroupHandler = async (data)=>{
   const headers = {
     token: token
   };
-  const response = await axios.post(`http://localhost:8080/createGroup`,data,{headers})
+  const response = await axios.post(`https://expensedivider.onrender.com/createGroup`,data,{headers})
   return response.data==null ? [] : response.data
 }
 
