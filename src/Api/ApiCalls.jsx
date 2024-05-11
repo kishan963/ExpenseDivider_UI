@@ -1,10 +1,10 @@
 import axios from "axios";
 
 
-const LoginHandler = (props)=>{
+const LoginHandler = async (props)=>{
     const { Email, Phone } = props;
     console.log(Email , Phone)
-    axios.post(`https://expensedivider.onrender.com/login`,{ Email, Phone })
+    await axios.post(`https://expensedivider.onrender.com/login`,{ Email, Phone })
     .then(res => {
       console.log(res);
       console.log(res.data.token);
@@ -16,10 +16,10 @@ const LoginHandler = (props)=>{
      
 }
 
-const SignUpHandler = (props)=>{
+const SignUpHandler = async (props)=>{
   const {Username,  Email, Phone } = props;
   console.log(Username ,Email , Phone)
-  axios.post(`https://expensedivider.onrender.com/register`,{Username, Email, Phone })
+  await axios.post(`https://expensedivider.onrender.com/register`,{Username, Email, Phone })
   .then(res => {
     console.log(res);
     console.log(res.data);

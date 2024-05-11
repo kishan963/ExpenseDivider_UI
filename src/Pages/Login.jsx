@@ -21,7 +21,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import ApiCalls from "@/Api/ApiCalls"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
 // schema for login form 
@@ -54,13 +54,13 @@ function Login() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     NavigateToHome(values)
-    
+
   }
 
   async function NavigateToHome(values) {
     try {
       await ApiCalls.LoginHandler(values); // Wait for the API call to finish
-      navigate(`/home`); // Navigate after the API call is finished
+      navigate(`/home`);
     } catch (error) {
       console.error('Error adding expense:', error);
       // Handle error if needed
@@ -104,13 +104,15 @@ function Login() {
                 )}
               />
               <CardFooter className="flex justify-between">
-                <Button variant="outline">SignUp</Button>
+                <Link to={`../signup`}>
+                  <Button variant="outline">SignUp</Button>
+                </Link>
                 <Button type="submit">Login</Button>
               </CardFooter>
             </form>
           </Form>
         </CardContent>
-        
+
       </Card>
 
     </div>
