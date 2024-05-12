@@ -48,7 +48,7 @@ const Home = () => {
                                 <Link to={`../group/${tag.Id}`}>
                                     {tag.Name}
                                 </Link>
-                                <div onClick={() => DeleteGroup(tag.id)} >Delete</div>
+                                <div onClick={() => DeleteGroup(tag.Id)} >Delete</div>
                             </div>
 
                             <Separator className="my-2" />
