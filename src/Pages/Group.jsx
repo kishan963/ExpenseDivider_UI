@@ -25,19 +25,25 @@ const GroupHandler = () => {
         }
     };
 
-    
+
 
     useEffect(() => {
         fetchData();
     }, []);
+    
 
+    const DeleteExpense = async (id) => {
+        console.log("Expense id ",id)
+        await ApiCalls.DeleteExpenseHandler({Id: id}); 
+        fetchData()
+   };
 
     return (
         <div>
             <Card className="w-[flex] m-4">
                 <h4>Group - {tags.Name}</h4>
                 <h2>List of People in Group</h2>
-               
+
             </Card>
             <Card className="w-[flex] m-4">
                 <div className="flex h-screen justify-center items-center">
@@ -47,10 +53,20 @@ const GroupHandler = () => {
                             {console.log(expenseList)}
                             {expenseList.map((tag) => (
                                 <>
-                                    <div className="mr-4">{tag.Description}</div>
-                                    <div>{tag.Amount}Rs</div>
+
+
+
+                                    <div className="mr-4" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>{tag.Description}
+                                        <div className="ml-auto mr-auto">{tag.Amount}Rs</div>
+                                        {console.log(tag.Id)}
+                                        <div onClick={() => DeleteExpense(tag.Id)} >Delete</div>
+                                       
+                                    </div>
                                     <Separator className="my-2" />
                                 </>
+
+
+
                             ))}
                         </div>
                     </ScrollArea>
