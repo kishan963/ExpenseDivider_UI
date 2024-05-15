@@ -28,16 +28,25 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function SingleSelect({ selectedName, onNameChange }) {
+export default function SingleSelect({ GroupId ,selectedName, onNameChange }) {
   const theme = useTheme();
   const [tags, setTags] = useState([]);
   
   const fetchData = async () => {
-    try {
-      const response = await ApiCalls.GetAllUserHandler();
-      setTags(response); // Set the fetched data in the state
-    } catch (err) {
-      console.error('Error fetching data:', err);
+    if(GroupId==null){
+      try {
+        const response = await ApiCalls.GetAllUserHandler();
+        setTags(response); // Set the fetched data in the state
+      } catch (err) {
+        console.error('Error fetching data:', err);
+      }
+    }else {
+      try {
+        const response = await ApiCalls.GetGroupHandler(GroupId);
+        setTags(response.Users); // Set the fetched data in the state
+      } catch (err) {
+        console.error('Error fetching data:', err);
+      }
     }
   };
 
@@ -74,6 +83,7 @@ export default function SingleSelect({ selectedName, onNameChange }) {
 
 // Prop types validation
 SingleSelect.propTypes = {
+  GroupId: PropTypes.number,
   selectedName: PropTypes.string.isRequired,
   onNameChange: PropTypes.func.isRequired,
 };

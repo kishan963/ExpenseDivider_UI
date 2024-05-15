@@ -29,17 +29,26 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function MultipleSelect({ selectedNames, onNameChange }) {
+export default function MultipleSelect({GroupId, selectedNames, onNameChange }) {
   const theme = useTheme();
   const [tags, setTags] = useState([]);
   
   const fetchData = async () => {
+    if(GroupId==null){
     try {
       const response = await ApiCalls.GetAllUserHandler();
       setTags(response); // Set the fetched data in the state
     } catch (err) {
       console.error('Error fetching data:', err);
     }
+  }else {
+    try {
+      const response = await ApiCalls.GetGroupHandler(GroupId);
+      setTags(response.Users); // Set the fetched data in the state
+    } catch (err) {
+      console.error('Error fetching data:', err);
+    }
+  }
   };
 
   useEffect(() => {
@@ -76,6 +85,7 @@ export default function MultipleSelect({ selectedNames, onNameChange }) {
 
 // Prop types validation
 MultipleSelect.propTypes = {
+  GroupId: PropTypes.number,
   selectedNames: PropTypes.array.isRequired,
   onNameChange: PropTypes.func.isRequired,
 };

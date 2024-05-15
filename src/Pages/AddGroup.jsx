@@ -105,7 +105,7 @@ return (
             <FormItem>
               <FormLabel>PaidTo</FormLabel>
               <FormControl>
-                <MultipleSelect selectedNames={selectedNames} onNameChange={handleNameChanges} />
+                <MultipleSelect GroupId={null} selectedNames={selectedNames} onNameChange={handleNameChanges} />
               </FormControl>
               <FormMessage />
             </FormItem>

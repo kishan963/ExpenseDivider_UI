@@ -136,7 +136,7 @@ return (
             <FormItem>
               <FormLabel>PaidBy</FormLabel>
               <FormControl>
-                <SingleSelect selectedNames={selectedName} onNameChange={handleNameChange} />
+                <SingleSelect GroupId={id} selectedNames={selectedName} onNameChange={handleNameChange} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -144,7 +144,7 @@ return (
             <FormItem>
               <FormLabel>PaidTo</FormLabel>
               <FormControl>
-                <MultipleSelect selectedNames={selectedNames} onNameChange={handleNameChanges} />
+                <MultipleSelect GroupId={id} selectedNames={selectedNames} onNameChange={handleNameChanges} />
               </FormControl>
               <FormMessage />
             </FormItem>
